@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOLDYCK - Pembayaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #5c2fce 100%);
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-method {
+            transition: all 0.3s ease;
+            border: 2px solid #000000;
+        }
+        
+        .payment-method:hover, .payment-method.selected {
+            border-color: #000000;
+            background-color: #ffffff;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #818181 0%, #000000 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .size-selector {
+            transition: all 0.3s ease;
+            border: 1px solid #ffffff;
+        }
+        
+        .size-selector:hover {
+            border-color: #000000;
+            background-color: #f8fafc;
+        }
+        
+        .size-selector.selected {
+            border-color: #667eea;
+            background-color: #a274fd;
+            color: rgb(255, 255, 255);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="c:\Users\ASUS TUF\Downloads\Black and White Modern Personal Brand Logo.png" alt="UrbanThreads Logo - Fashion urban streetwear dengan desain modern dan minimalis" class="rounded-lg shadow-md" />
+                    <h1 class="text-2xl font-bold">ZOLDYCK</h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <span class="text-sm bg-white text-purple-600 px-3 py-1 rounded-full font-semibold">
+                        <i class="fas fa-lock mr-1"></i> Pembayaran Aman
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Progress Steps -->
+            <div class="mb-12">
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">1</div>
+                        <span class="ml-2 text-sm font-semibold">Keranjang</span>
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">2</div>
+                        <span class="ml-2 text-sm font-semibold">Pengiriman</span>
+                    </div>
+                    <div class="w-16 h-1 bg-gray-300"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold animate-pulse">3</div>
+                        <span class="ml-2 text-sm font-semibold text-purple-600">Pembayaran</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Left Column - Products Summary -->
+                <div class="md:col-span-2">
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Ringkasan Pesanan</h2>
+                        
+                        <!-- Product Items -->
+                        <div class="space-y-6">
+                            <!-- Hoodie Zipper Item -->
+                            <div class="product-card bg-gray-50 rounded-lg p-4">
+                                <div class="flex items-center space-x-4">
+                                    <img src="c:\Users\ASUS TUF\Downloads\ChatGPT Image Aug 20, 2025, 10_34_30 AM.png" alt="Hoodie Zipper Zoldyck Streetwear hitam dengan desain grafis depan dan ritsleting premium" class="w-20 h-20 object-cover rounded-lg" />
+                                    <div class="flex-grow">
+                                        <h3 class="font-semibold text-lg">Hoodie Zipper Zoldyck Boxy Oversize </h3>
+                                        <p class="text-sm text-gray-600 mb-3">Hitam</p>
+                                        
+                                        <!-- Size Selection for Hoodie -->
+                                        <div class="mb-3">
+                                            <label class="block text-sm font-semibold mb-2">Pilih Ukuran:</label>
+                                            <div class="flex flex-wrap gap-2">
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'S')">S</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'M')">M</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'L')">L</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'XL')">XL</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'XXL')">XXL</button>
+                                            </div>
+                                            <span id="hoodie-size-display" class="text-sm text-purple-600 font-semibold mt-1 block">Ukuran: XL</span>
+                                        </div>
+
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('hoodie', -1)">-</button>
+                                                <span id="hoodie-quantity" class="font-semibold w-8 text-center">1</span>
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('hoodie', 1)">+</button>
+                                            </div>
+                                            <span class="font-bold text-purple-600 text-lg">Rp 299.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                             <!-- Hoodie Zipper Item -->
+                            <div class="product-card bg-gray-50 rounded-lg p-4">
+                                <div class="flex items-center space-x-4">
+                                    <img src="c:\Users\ASUS TUF\Downloads\ChatGPT Image Aug 20, 2025, 10_34_30 AM.png" alt="Hoodie Zipper Zoldyck Streetwear hitam dengan desain grafis depan dan ritsleting premium" class="w-20 h-20 object-cover rounded-lg" />
+                                    <div class="flex-grow">
+                                        <h3 class="font-semibold text-lg">Hoodie Zipper Zoldyck Boxy Oversize </h3>
+                                        <p class="text-sm text-gray-600 mb-3">Hitam</p>
+                                        
+                                        <!-- Size Selection for Hoodie -->
+                                        <div class="mb-3">
+                                            <label class="block text-sm font-semibold mb-2">Pilih Ukuran:</label>
+                                            <div class="flex flex-wrap gap-2">
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'S')">S</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'M')">M</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'L')">L</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'XL')">XL</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('hoodie', 'XXL')">XXL</button>
+                                            </div>
+                                            <span id="hoodie-size-display" class="text-sm text-purple-600 font-semibold mt-1 block">Ukuran: XL</span>
+                                        </div>
+
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('hoodie', -1)">-</button>
+                                                <span id="hoodie-quantity" class="font-semibold w-8 text-center">1</span>
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('hoodie', 1)">+</button>
+                                            </div>
+                                            <span class="font-bold text-purple-600 text-lg">Rp 299.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Celana Item -->
+                            <div class="product-card bg-gray-50 rounded-lg p-4">
+                                <div class="flex items-center space-x-4">
+                                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/89f83205-f91e-4990-9686-2a8eb8140d4b.png" alt="Celana Chino Slim Fit warna khaki dengan potongan modern dan bahan premium" class="w-20 h-20 object-cover rounded-lg" />
+                                    <div class="flex-grow">
+                                        <h3 class="font-semibold text-lg">Celana Chino Slim</h3>
+                                        <p class="text-sm text-gray-600 mb-3">Khaki</p>
+                                        
+                                        <!-- Size Selection for Pants -->
+                                        <div class="mb-3">
+                                            <label class="block text-sm font-semibold mb-2">Pilih Ukuran:</label>
+                                            <div class="flex flex-wrap gap-2">
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('pants', 'S')">S</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('pants', 'M')">M</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('pants', 'L')">L</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('pants', 'XL')">XL</button>
+                                                <button class="size-selector px-3 py-1 rounded text-sm" onclick="selectSize('pants', 'XXL')">XXL</button>
+                                            </div>
+                                            <span id="pants-size-display" class="text-sm text-purple-600 font-semibold mt-1 block">Ukuran: 32</span>
+                                        </div>
+
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('pants', -1)">-</button>
+                                                <span id="pants-quantity" class="font-semibold w-8 text-center">1</span>
+                                                <button class="w-8 h-8 bg-gray-200 rounded hover:bg-gray-300 transition" onclick="updateQuantity('pants', 1)">+</button>
+                                            </div>
+                                            <span class="font-bold text-purple-600 text-lg">Rp 249.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Info -->
+                        <div class="mt-6 pt-4 border-t border-gray-200">
+                            <h3 class="font-semibold mb-2">Informasi Pengiriman</h3>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <p class="text-sm"><strong>Alamat:</strong> Jl. Contoh No. 123, Jakarta Selatan</p>
+                                <p class="text-sm"><strong>Kurir:</strong> JNE Express - Estimasi 2-3 hari</p>
+                                <p class="text-sm"><strong>Biaya:</strong> Rp 15.000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Metode Pembayaran</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <!-- Bank Transfer -->
+                            <div class="payment-method p-4 rounded-lg cursor-pointer" onclick="selectPayment('bank')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-building text-purple-600"></i>
+                                    </div>
+                                    <span class="font-semibold">Transfer Bank</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">BCA, BNI, Mandiri, BRI</p>
+                            </div>
+
+                            <!-- E-Wallet -->
+                            <div class="payment-method p-4 rounded-lg cursor-pointer" onclick="selectPayment('ewallet')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-wallet text-purple-600"></i>
+                                    </div>
+                                    <span class="font-semibold">E-Wallet</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">GoPay, OVO, Dana</p>
+                            </div>
+
+                            <!-- Credit Card -->
+                            <div class="payment-method p-4 rounded-lg cursor-pointer" onclick="selectPayment('creditcard')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-credit-card text-purple-600"></i>
+                                    </div>
+                                    <span class="font-semibold">Kartu Kredit</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Visa, Mastercard</p>
+                            </div>
+
+                            <!-- QRIS -->
+                            <div class="payment-method p-4 rounded-lg cursor-pointer" onclick="selectPayment('qris')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-qrcode text-purple-600"></i>
+                                    </div>
+                                    <span class="font-semibold">QRIS</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-2">Scan QR Code</p>
+                            </div>
+                        </div>
+
+                        <!-- Selected Payment Details -->
+                        <div id="payment-details" class="hidden bg-purple-50 p-4 rounded-lg mb-4">
+                            <h4 class="font-semibold mb-2">Instruksi Pembayaran</h4>
+                            <p id="payment-instruction" class="text-sm"></p>
+                        </div>
+
+                        <!-- Payment Form -->
+                        <form id="payment-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Nama Lengkap</label>
+                                <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Masukkan nama lengkap">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email</label>
+                                <input type="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="email@contoh.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">No. Telepon</label>
+                                <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="08xxxxxxxxxx">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column - Order Summary -->
+                <div class="md:col-span-1">
+                    <div class="bg-white rounded-xl shadow-lg p-6 sticky top-6">
+                        <h2 class="text-xl font-bold mb-4 text-gray-800">Total Pembayaran</h2>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex justify-between">
+                                <span>Subtotal</span>
+                                <span id="subtotal">Rp 548.000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Biaya Pengiriman</span>
+                                <span>Rp 15.000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Diskon</span>
+                                <span class="text-green-600">-Rp 25.000</span>
+                            </div>
+                            <div class="border-t pt-3 mt-3">
+                                <div class="flex justify-between font-bold text-lg">
+                                    <span>Total</span>
+                                    <span id="total-amount" class="text-purple-600">Rp 538.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Details -->
+                        <div class="mt-4 p-4 bg-gray-50 rounded-lg">
+                            <h3 class="font-semibold mb-2 text-sm">Detail Pesanan:</h3>
+                            <div id="order-details" class="text-xs space-y-1">
+                                <p>Hoodie Zipper Urban - Hitam (XL) x1</p>
+                                <p>Celana Chino Slim - Khaki (32) x1</p>
+                            </div>
+                        </div>
+
+                        <button onclick="processPayment()" class="w-full btn-primary text-white py-3 px-6 rounded-lg font-semibold text-lg flex items-center justify-center space-x-2 mt-4">
+                            <i class="fas fa-lock"></i>
+                            <span>Bayar Sekarang</span>
+                        </button>
+
+                        <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center space-x-2 text-green-600">
+                                <i class="fas fa-shield-alt"></i>
+                                <span class="text-sm">Pembayaran 100% Aman dan Terenkripsi</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 space-y-2 text-xs text-gray-600">
+                            <p><i class="fas fa-check-circle text-green-500 mr-1"></i> Garansi 30 hari pengembalian</p>
+                            <p><i class="fas fa-check-circle text-green-500 mr-1"></i> Garansi kualitas produk</p>
+                            <p><i class="fas fa-check-circle text-green-500 mr-1"></i> Dukungan pelanggan 24/7</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold mb-4">ZOLDYCK</h3>
+                    <p class="text-sm text-gray-400">Fashion streetwear terbaik dengan kualitas premium dan desain terkini.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Kontak</h3>
+                    <p class="text-sm text-gray-400">Email: hello@zoldyck.id</p>
+                    <p class="text-sm text-gray-400">WhatsApp: 0812-2378-3662</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Layanan</h3>
+                    <p class="text-sm text-gray-400">Pengiriman Cepat</p>
+                    <p class="text-sm text-gray-400">Garansi Produk</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-4">Keamanan</h3>
+                    <p class="text-sm text-gray-400">Pembayaran Aman</p>
+                    <p class="text-sm text-gray-400">Privasi Terlindungi</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p class="text-sm text-gray-400">© 2024 UrbanThreads. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedPayment = null;
+        let hoodieQuantity = 1;
+        let pantsQuantity = 1;
+        let hoodieSize = 'XL';
+        let pantsSize = '32';
+        const hoodiePrice = 299000;
+        const pantsPrice = 249000;
+        const shippingCost = 15000;
+        const discount = 25000;
+
+        function updateQuantity(product, change) {
+            if (product === 'hoodie') {
+                hoodieQuantity = Math.max(1, hoodieQuantity + change);
+                document.getElementById('hoodie-quantity').textContent = hoodieQuantity;
+            } else if (product === 'pants') {
+                pantsQuantity = Math.max(1, pantsQuantity + change);
+                document.getElementById('pants-quantity').textContent = pantsQuantity;
+            }
+            updateTotals();
+            updateOrderDetails();
+        }
+
+        function selectSize(product, size) {
+            // Remove selected class from all size buttons for this product
+            const sizeButtons = document.querySelectorAll(`.size-selector`);
+            sizeButtons.forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked size button
+            event.target.classList.add('selected');
+            
+            if (product === 'hoodie') {
+                hoodieSize = size;
+                document.getElementById('hoodie-size-display').textContent = `Ukuran: ${size}`;
+            } else if (product === 'pants') {
+                pantsSize = size;
+                document.getElementById('pants-size-display').textContent = `Ukuran: ${size}`;
+            }
+            
+            updateOrderDetails();
+        }
+
+        function updateTotals() {
+            const subtotal = (hoodieQuantity * hoodiePrice) + (pantsQuantity * pantsPrice);
+            const total = subtotal + shippingCost - discount;
+            
+            document.getElementById('subtotal').textContent = formatCurrency(subtotal);
+            document.getElementById('total-amount').textContent = formatCurrency(total);
+        }
+
+        function updateOrderDetails() {
+            const orderDetails = document.getElementById('order-details');
+            orderDetails.innerHTML = `
+                <p>Hoodie Zipper Urban - Hitam (${hoodieSize}) x${hoodieQuantity}</p>
+                <p>Celana Chino Slim - Khaki (${pantsSize}) x${pantsQuantity}</p>
+            `;
+        }
+
+        function selectPayment(method) {
+            selectedPayment = method;
+            
+            // Remove selected class from all methods
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked method
+            document.querySelector(`.payment-method:nth-child(${getMethodIndex(method)})`).classList.add('selected');
+            
+            // Show payment instructions
+            const details = document.getElementById('payment-details');
+            const instruction = document.getElementById('payment-instruction');
+            
+            details.classList.remove('hidden');
+            
+            switch(method) {
+                case 'bank':
+                    instruction.innerHTML = 'Transfer ke rekening BCA: 0265376241 a.n. Zoldyck. Gunakan kode unik di belakang total pembayaran.';
+                    break;
+                case 'ewallet':
+                    instruction.innerHTML = 'Bayar menggunakan GoPay/OVO/Dana ke nomor 081223783662. Pastikan saldo mencukupi.';
+                    break;
+                case 'creditcard':
+                    instruction.innerHTML = 'Masukkan informasi kartu kredit Anda. Pembayaran diproses secara aman dan terenkripsi.';
+                    break;
+                case 'qris':
+                    instruction.innerHTML = 'Scan QR code yang akan muncul setelah konfirmasi. Pembayaran instan dan tanpa biaya admin.';
+                    break;
+            }
+        }
+
+        function getMethodIndex(method) {
+            const methods = ['bank', 'ewallet', 'creditcard', 'qris'];
+            return methods.indexOf(method) + 1;
+        }
+
+        function processPayment() {
+            const form = document.getElementById('payment-form');
+            
+            if (!selectedPayment) {
+                alert('Pilih metode pembayaran terlebih dahulu!');
+                return;
+            }
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Simulate payment processing
+            const button = document.querySelector('button[onclick="processPayment()"]');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                alert('Pembayaran berhasil diproses! Terima kasih telah berbelanja di Zoldyck.');
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Reset form (in real app, would redirect to success page)
+                form.reset();
+                selectedPayment = null;
+                document.querySelectorAll('.payment-method').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                document.getElementById('payment-details').classList.add('hidden');
+            }, 2000);
+        }
+
+        function formatCurrency(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        // Initialize sizes and totals
+        function initializeSizes() {
+            // Set default selected sizes
+            document.querySelectorAll('.size-selector').forEach(btn => {
+                if (btn.textContent === 'XL') {
+                    btn.classList.add('selected');
+                }
+            });
+            updateTotals();
+            updateOrderDetails();
+        }
+
+        // Initialize on page load
+        window.onload = initializeSizes;
+    </script>
+</body>
+</html>
+
